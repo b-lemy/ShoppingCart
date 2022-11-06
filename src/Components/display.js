@@ -3,14 +3,13 @@ import SingleProduct from "./singleProduct";
 import {useCart} from "../Context/context";
 
 const Display = () => {
-    const shop = useCart()
 
-    const CartHandler = (item) => {
-        shop.AddItem(item)
-    }
+    const GlobalState = useCart()
+    const {AddItemToCartHandler,RemoveItemToCartHandler} =useCart()
+
     return (
         <div className="contain">
-            {shop.product.map((item)=>{
+            {GlobalState.products.map((item)=>{
                 return (
                     <SingleProduct
                         key={item.id}
@@ -21,7 +20,10 @@ const Display = () => {
                         fastDelivery = {item.fastDelivery}
                         rating = {item.rating}
                         stock = {item.inStock}
-                        handler = {CartHandler.bind(null,item)}
+                        add={() => AddItemToCartHandler(item)}
+                        remove={() =>RemoveItemToCartHandler(item)}
+
+
                     />
 
                 )

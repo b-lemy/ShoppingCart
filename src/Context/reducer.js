@@ -1,15 +1,16 @@
 import {InitialState} from "./context";
 
- export const ShoppingReducer = (state = InitialState ,action) =>{
+export const ShoppingReducer = (state = InitialState, action) => {
     switch (action.type) {
         case 'ADD_T0_CART':
-            const updatedCart = state.cart.concat(action.item);
             return {
-                cart: updatedCart,
+                ...state,
+                cart: [...state.cart, action.payload]
             }
         case 'REMOVE_FROM_CART':
             return {
-                state
+               ...state,
+                cart: state.cart.filter((item) => item.id !== action.payload.id)
             }
 
         default:
@@ -17,4 +18,4 @@ import {InitialState} from "./context";
 
     }
 
- }
+}

@@ -15,33 +15,32 @@ const Products =[...Array(20)].map(()=>({
 export  const  InitialState = {
     cart: [],
     product:Products,
-
 }
 
 export const ShoppingContext = createContext(InitialState)
 
 
 export const ShoppingProvider = ({children}) => {
-   const[state ,dispatch] =useReducer(ShoppingReducer ,InitialState);
+   const[state ,dispatch] =useReducer(ShoppingReducer, InitialState);
 
    const AddItemToCartHandler = (item) =>{
        dispatch({
            type:'ADD_T0_CART',
-           item:item
+            payload:item
        })
-
-
    }
-
-
-
-
-    const ShoppingCont = {
-        product:state.product,
-        cart:state.cart,
-        AddItem:AddItemToCartHandler
+    const RemoveItemToCartHandler = (item) =>{
+        dispatch({
+            type:'ADD_T0_CART',
+            payload: item
+        })
     }
-
+    const ShoppingCont = {
+        products:state.product,
+        cart:state.cart,
+        AddItemToCartHandler,
+        RemoveItemToCartHandler
+    }
     return (
         <ShoppingContext.Provider value={ShoppingCont}>
             {children}
@@ -52,8 +51,8 @@ export const ShoppingProvider = ({children}) => {
 
 
  export const useCart = () =>{
-    const shop = useContext(ShoppingContext)
-     return shop
+    const shop = useContext(ShoppingContext);
+     return shop;
 
  }
 

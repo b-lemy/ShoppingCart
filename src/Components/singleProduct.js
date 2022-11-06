@@ -3,11 +3,8 @@ import {Button, Card} from "react-bootstrap";
 import Rating from "./rating";
 import {useCart} from "../Context/context";
 
-const SingleProduct = ({id, name, image, price, fastDelivery, rating, stock,handler}) => {
-    const cart = useCart()
-    console.log(cart)
-
-
+const SingleProduct = ({id, name, image, price, fastDelivery, rating, stock , add ,remove}) => {
+    const GlobalState = useCart()
 
     return (
         <Card className="card">
@@ -19,9 +16,11 @@ const SingleProduct = ({id, name, image, price, fastDelivery, rating, stock,hand
                 {fastDelivery ? <div>Fast Delivery</div> : <div>Delivery in 4 days</div>}
             </span>
             <Rating rating={rating}/>
-            {cart.cart.some((p) => p.id === id) ?
-                <Button  variant="danger"> Remove from Cart</Button> :
-                <Button disabled={!stock} onClick={handler} variant="primary">{!stock ? "Out of Stock" : "Add to cart"}</Button>
+            {GlobalState.cart.some((p) => p.id === id) ?
+                <Button  variant="danger" onClick={remove}> Remove from Cart</Button> :
+                <Button disabled={!stock}
+                         onClick={add}
+                        variant="primary">{!stock ? "Out of Stock" : "Add to cart"}</Button>
             }
 
 
