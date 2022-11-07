@@ -4,12 +4,12 @@ import {useCart} from "../Context/context";
 
 const Display = () => {
 
-    const GlobalState = useCart()
-    const {AddItemToCartHandler,RemoveItemToCartHandler} =useCart()
+
+    const {AddItemToCartHandler,RemoveItemToCartHandler,products} =useCart()
 
     return (
         <div className="contain">
-            {GlobalState.products.map((item)=>{
+            {products.map((item)=>{
                 return (
                     <SingleProduct
                         key={item.id}

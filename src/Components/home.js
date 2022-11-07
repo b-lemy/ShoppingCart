@@ -8,8 +8,6 @@ import Display from "./display";
 import {Col, Row} from "react-bootstrap";
 
 const Home = () => {
-    const ShopCtx = useContext(ShoppingContext)
-    console.log(ShopCtx)
     return (
         <Fragment>
             <NavB/>

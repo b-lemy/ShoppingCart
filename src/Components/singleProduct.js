@@ -4,7 +4,7 @@ import Rating from "./rating";
 import {useCart} from "../Context/context";
 
 const SingleProduct = ({id, name, image, price, fastDelivery, rating, stock , add ,remove}) => {
-    const GlobalState = useCart()
+    const {cart} = useCart()
 
     return (
         <Card className="card">
@@ -16,7 +16,7 @@ const SingleProduct = ({id, name, image, price, fastDelivery, rating, stock , ad
                 {fastDelivery ? <div>Fast Delivery</div> : <div>Delivery in 4 days</div>}
             </span>
             <Rating rating={rating}/>
-            {GlobalState.cart.some((p) => p.id === id) ?
+            {cart.some((p) => p.id === id) ?
                 <Button  variant="danger" onClick={remove}> Remove from Cart</Button> :
                 <Button disabled={!stock}
                          onClick={add}
