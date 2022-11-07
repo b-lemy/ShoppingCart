@@ -11,7 +11,8 @@ import {useCart} from "../Context/context";
 
 
 const NavB = () => {
-    const {cart} =useCart()
+    const {cart} = useCart()
+
 
     return (
         <nav className="nav-index">
@@ -19,12 +20,16 @@ const NavB = () => {
             <Search/>
             <Dropdown>
                 <Dropdown.Toggle id="dropdown-button-dark-example1" variant="outline-success">
-                    <BsFillCartPlusFill fontSize="23px" /> {cart.length > 0 && <Badge bg="primary">{cart.length}</Badge>}
+                    <BsFillCartPlusFill fontSize="23px"/> {cart.length > 0 && <Badge bg="primary">{cart.length}</Badge>}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu variant="dark">
+                    {cart.length > 0
+                        ? <span>{cart.map((item) => item.name )}</span>
+                        : <span style={{padding: 10}}>Cart is empty</span>
+                    }
 
-                    <span style={{padding: 10}}>Cart is empty</span>
+
                 </Dropdown.Menu>
             </Dropdown>
         </nav>

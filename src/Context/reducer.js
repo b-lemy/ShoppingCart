@@ -7,10 +7,10 @@ export const ShoppingReducer = (state = InitialState, action) => {
                 ...state,
                 cart: [...state.cart, action.payload]
             }
-        case 'REMOVE_FROM_CART':
+        case 'REMOVE_T0_CART':
             return {
                ...state,
-                cart: state.cart.filter((item) => item.id !== action.payload.id)
+                cart: state.cart.filter(item => item.id !== action.payload.id)
             }
 
         default:

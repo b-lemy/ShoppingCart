@@ -31,7 +31,7 @@ export const ShoppingProvider = ({children}) => {
    }
     const RemoveItemToCartHandler = (item) =>{
         dispatch({
-            type:'ADD_T0_CART',
+            type:'REMOVE_T0_CART',
             payload: item
         })
     }
