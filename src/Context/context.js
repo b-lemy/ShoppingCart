@@ -15,6 +15,10 @@ const Products =[...Array(20)].map(()=>({
 export  const  InitialState = {
     cart: [],
     product:Products,
+    byStock:false,
+    byFastDelivery:false,
+    byRating:0,
+    searchQuery:""
 }
 
 export const ShoppingContext = createContext(InitialState)
@@ -39,7 +43,12 @@ export const ShoppingProvider = ({children}) => {
         products:state.product,
         cart:state.cart,
         AddItemToCartHandler,
-        RemoveItemToCartHandler
+        RemoveItemToCartHandler,
+        byStock:state.byStock,
+        byFastDelivery:state.byFastDelivery,
+        byRating:state.byRating,
+        searchQuery:state.searchQuery,
+        dispatch
     }
     return (
         <ShoppingContext.Provider value={ShoppingCont}>

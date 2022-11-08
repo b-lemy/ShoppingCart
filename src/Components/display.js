@@ -5,11 +5,33 @@ import {useCart} from "../Context/context";
 const Display = () => {
 
 
-    const {AddItemToCartHandler,RemoveItemToCartHandler,products} =useCart()
+    const {AddItemToCartHandler,RemoveItemToCartHandler,products, byStock, byFastDelivery, byRating, searchQuery, dispatch, sort} =useCart()
+
+    const transformedProducts = () => {
+        let sortedProducts =products;
+
+        if(sort){
+            sortedProducts =sortedProducts.sort((a,b) => sort === "lowToHigh"?a.price -b.price : b.price -a.price)
+        }
+        if(!byStock){
+            sortedProducts =sortedProducts.filter((item) => item.inStock)
+        }
+        if(byFastDelivery){
+            sortedProducts =sortedProducts.filter((item) => item.fastDelivery)
+        }
+        if(byRating){
+            sortedProducts =sortedProducts.filter((item) => item.rating >= byRating)
+        }
+        if(searchQuery){
+            sortedProducts =sortedProducts.filter((item) => item.name.toLowerCase().includes(searchQuery))
+        }
+
+        return sortedProducts
+    }
 
     return (
         <div className="contain">
-            {products.map((item)=>{
+            {transformedProducts().map((item)=>{
                 return (
                     <SingleProduct
                         key={item.id}
