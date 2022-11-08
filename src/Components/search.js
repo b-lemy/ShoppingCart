@@ -4,8 +4,8 @@ import {AiOutlineSearch} from "react-icons/ai";
 import {useCart} from "../Context/context";
 
 const Search = () => {
-    const {dispatch, searchQuery} = useCart()
-    console.log(searchQuery)
+    const {dispatch} = useCart()
+
     return (
         <Form className='search'>
             <AiOutlineSearch className='icon'/>
