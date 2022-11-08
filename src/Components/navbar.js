@@ -25,8 +25,15 @@ const NavB = () => {
 
                 <Dropdown.Menu variant="dark">
                     {cart.length > 0
-                        ? <span>{cart.map((item) => item.name )}</span>
-                        : <span style={{padding: 10}}>Cart is empty</span>
+                        ? <span>{cart.map((item) =>{
+                            return (
+                                <ul key={item.id}>
+                                    <li>{ item.name}</li>
+                                    <li>{ item.price}</li>
+                                </ul>
+                            )})}
+                            Total: Tsh {cart.reduce((acc ,cur) =>acc + +(cur.price),0)}
+                    </span>: <span style={{padding: 10}}>Cart is empty</span>
                     }
 
 

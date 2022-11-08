@@ -8,6 +8,7 @@ const Filter = () => {
 
     return (
         <div className='filter'>
+            <h1>Filters</h1>
            <span>
                <FormCheck
                    inline
