@@ -4,8 +4,7 @@ import Rating from "./rating";
 import {useCart} from "../Context/context";
 
 const Filter = () => {
-    const {byStock, byFastDelivery, byRating, searchQuery, dispatch, sort} = useCart()
-    console.log(byStock)
+    const {byStock, byFastDelivery, byRating, dispatch, sort} = useCart()
 
     return (
         <div className='filter'>
